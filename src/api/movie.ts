@@ -8,6 +8,7 @@ const REST_API_ADDR = axios.create({
     baseURL : "https://api.themoviedb.org/3/",
     params : {
         language : "KO-KR",
+        api_key : "8a8ff1884bc4e3363a93008549e0115c"
     },
 });
 
@@ -16,5 +17,5 @@ export const homeApi = {
     
     movieDetail : (id:number) : Promise<AxiosResponse<MovieDetailData>> => REST_API_ADDR.get(`movie/${id}`,{params:{append_toresonse : "videos"}}),
 
-    
+
 }
