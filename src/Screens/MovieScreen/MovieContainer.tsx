@@ -1,8 +1,10 @@
-import { Component, ReactNode } from "react";
-import MoviePresenter from "./MoviePresenter";
+import { Component } from "react";
+import MoivePresenter from "./MoviePresenter";
 import { moviesApi } from "../../api/movie";
 
-interface MovieContainerState{
+
+
+interface MovieContainerState {
     nowPlaying: any[] | null;
     upcoming: any[] | null;
     popular: any[] | null;
@@ -13,33 +15,33 @@ interface MovieContainerState{
     nowPlayingInfinite: any[] | null;
     upcomingInfinite: any[] | null;
     topRatedInfinite: any[] | null;
-}
+  }
 
 class MovieContainer extends Component<{}, MovieContainerState>{
 
-    state: MovieContainerState = {
+    state: MovieContainerState ={
         nowPlaying : null,
         upcoming : null,
         popular : null,
-        topRated : null,
+        topRated  :null,
         error : null,
         loading : true,
         nowPlayingInfinite : null,
         upcomingInfinite : null,
-        popularInfinite : null,
+        popularInfinite :null,
         topRatedInfinite : null
     };
 
-    async componentDidMount(){
+    async componentDidMount() {
         try{
-            const {data : {resultes : nowPlaying}} = await moviesApi.nowPlaying();
-            const {data : {resultes : upcoming}} = await moviesApi.upcoming();
-            const {data : {resultes : popular}} = await moviesApi.popular();
-            const {data : {resultes : topRated}} = await moviesApi.topRated();
-            const {data : {resultes : popularInfinite}} = await moviesApi.popularInfinite();
-            const {data : {resultes : nowPlayingInfinite}} = await moviesApi.nowPlayingInfinite();
-            const {data : {resultes : upcomingInfinite}} = await moviesApi.upcomingInfinite();
-            const {data : {resultes : topRatedInfinite}} = await moviesApi.topRatedInfinite();
+            const { data : {results : nowPlaying}} = await moviesApi.nowPlaying();
+            const { data : {results : upcoming}} = await moviesApi.upcoming();
+            const { data : {results : popular}} = await moviesApi.popular();
+            const { data : {results : topRated}} = await moviesApi.topRated();
+            const { data : {results : popularInfinite}} = await moviesApi.popularInfinite();
+            const { data : {results : nowPlayingInfinite}} = await moviesApi.nowPlayingInfinite();
+            const { data : {results : upcomingInfinite}} = await moviesApi.upcomingInfinite();
+            const { data : {results : topRatedInfinite}} = await moviesApi.topRatedInfinite();
 
             this.setState({
                 nowPlaying,
@@ -49,19 +51,27 @@ class MovieContainer extends Component<{}, MovieContainerState>{
                 popularInfinite,
                 nowPlayingInfinite,
                 upcomingInfinite,
-                topRatedInfinite,
+                topRatedInfinite
             });
+
             
-        }catch{
+
+
+        }
+        catch{
             this.setState({error : "영화 정보를 찾을 수 없습니다."});
-        }finally{
+        }
+        finally{
             this.setState({loading : false});
         }
     }
 
+
+
+
     render(){
-        return <MoviePresenter {...this.state} />
+        return <MoivePresenter { ...this.state} />
     }
-}
+    }
 
 export default MovieContainer;
