@@ -15,7 +15,7 @@ const Router : FC = (props) => {
       <ScreenHeader pathname={pathname} />
       <Routes>
           <Route path="/" Component={HomeContainer}></Route>
-          <Route path="/movie" Component={MovieContainer}></Route>
+          <Route path="/movie/*" Component={MovieContainer}></Route>
         </Routes>
         
       </div>
