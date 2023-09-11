@@ -4,6 +4,7 @@ import {  Route, Routes, useLocation, useParams } from 'react-router-dom';
 import ScreenHeader from "./components/Header/ScreenHeader";
 import HomeContainer from './Screens/HomeScreen';
 import MovieContainer from './Screens/MovieScreen';
+import DetailContainer from './Screens/DetailScreen';
 
 
 const Router : FC = (props) => {
@@ -16,6 +17,7 @@ const Router : FC = (props) => {
       <Routes>
           <Route path="/" Component={HomeContainer}></Route>
           <Route path="/movie/*" Component={MovieContainer}></Route>
+          <Route path="/detail/:id" Component={DetailContainer}></Route>
         </Routes>
         
       </div>
